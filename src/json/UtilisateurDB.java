@@ -38,18 +38,18 @@ public class UtilisateurDB implements IUtilisateurDB {
 			writer.write("matricule=" + u.getMatricule() + "&nom=" + u.getNom() + "&prenom=" + u.getPrenom() + "&numero=" + u.getNumero() + "&bureau=" + u.getBureau() + "&mail=" + u.getMail() + "&password=" + u.getPassword());
 			writer.flush();
 			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String ligne;
-            while ((ligne = reader.readLine()) != null) {
-                result += ligne;
-            }
-            id = Integer.parseInt(result);
-            u.setId(id);
-         } catch (Exception e) {
-            e.printStackTrace();
-         }finally{
-            try{writer.close();}catch(Exception e){}
-            try{reader.close();}catch(Exception e){}
-         }
+			String ligne;
+			while ((ligne = reader.readLine()) != null) {
+				result += ligne;
+			}
+			id = Integer.parseInt(result);
+			u.setId(id);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try{writer.close();}catch(Exception e){}
+			try{reader.close();}catch(Exception e){}
+		}
 		return (id != 0);
 	}
 
@@ -69,16 +69,17 @@ public class UtilisateurDB implements IUtilisateurDB {
 			writer.write("matricule=" + matricule + "&password=" + password);
 			writer.flush();
 			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String ligne;
-            while ((ligne = reader.readLine()) != null) {
-                result += ligne;
-            }
-         } catch (Exception e) {
-            e.printStackTrace();
-         }finally{
-            try{writer.close();}catch(Exception e){}
-            try{reader.close();}catch(Exception e){}
-         }
+			String ligne;
+			while ((ligne = reader.readLine()) != null) {
+				System.out.println(ligne);
+				result += ligne;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try{writer.close();}catch(Exception e){}
+			try{reader.close();}catch(Exception e){}
+		}
 		if (result.equals(GOOD_RESULT)) {
 			return getUtilisateurFromMatricule(matricule);
 		} else {
@@ -102,16 +103,16 @@ public class UtilisateurDB implements IUtilisateurDB {
 			writer.write("matricule=" + matricule);
 			writer.flush();
 			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String ligne;
-            while ((ligne = reader.readLine()) != null) {
-                result += ligne;
-            }
-         } catch (Exception e) {
-            e.printStackTrace();
-         }finally{
-            try{writer.close();}catch(Exception e){}
-            try{reader.close();}catch(Exception e){}
-         }
+			String ligne;
+			while ((ligne = reader.readLine()) != null) {
+				result += ligne;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try{writer.close();}catch(Exception e){}
+			try{reader.close();}catch(Exception e){}
+		}
 		return result.equals(GOOD_RESULT);
 	}
 
