@@ -2,15 +2,13 @@ package fr.ineo.ping16;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 import dao.IUtilisateurDB;
 import dto.Utilisateur;
+import json.MatriculeRequete;
 import json.UtilisateurDB;
 
 public class MainActivity extends Activity implements OnClickListener{
@@ -22,6 +20,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		connexion = (Button) findViewById(R.id.btnCnx);
+		connexion.setOnClickListener(this);
 	}
 
 	@Override
@@ -31,11 +30,9 @@ public class MainActivity extends Activity implements OnClickListener{
 			EditText password = (EditText) findViewById(R.id.password);
 			IUtilisateurDB utilisateurDB = new UtilisateurDB();
 			Utilisateur utilisateur = null;
-			if((utilisateur = utilisateurDB.checkLogin(matricule.getText().toString(), password.getText().toString())) != null) {
-				Toast.makeText(this, "Ok", Toast.LENGTH_SHORT).show();
-			} else {
-				Toast.makeText(this, "Pas Ok", Toast.LENGTH_SHORT).show();
-			}
+			// Pour tester le matricule
+			new MatriculeRequete().execute(matricule.getText().toString(), this.getApplicationContext());
+			// Il faudra mettre le checkLogin à la place !
 		}
 		
 	}

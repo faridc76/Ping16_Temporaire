@@ -6,7 +6,12 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.JSONObject;
+
+import android.app.Activity;
+import android.content.Context;
 import android.os.StrictMode;
+import android.widget.Toast;
 import dao.IUtilisateurDB;
 import dto.Utilisateur;
 
@@ -17,9 +22,9 @@ public class UtilisateurDB implements IUtilisateurDB {
 	public final static String CHEF_DE_CHANTIER = "Chef de chantier";
 	public final static String CONDUCTEUR_DE_TRAVAUX = "Conducteur de travaux";
 	public final static String RESPONSABLE_DAFFAIRES = "Responsable d'affaires";
-	public final static String GOOD_RESULT = "True";
+	public final static String GOOD_RESULT = "true";
 	
-	public final static String DOMAINE = "http://gestineo.free.fr/";
+	public final static String DOMAINE = "http://faridchouakria.free.fr/webservices/";
 	
 	@Override
 	public boolean AjoutPersonne(Utilisateur u) {
@@ -89,31 +94,36 @@ public class UtilisateurDB implements IUtilisateurDB {
 
 	@Override
 	public boolean isMatriculeFree(String matricule) {
+		boolean value = true;
 		String result = "";
 		OutputStreamWriter writer = null;
 		BufferedReader reader = null;
 		try {
 			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 			StrictMode.setThreadPolicy(policy); 
-			URL url = new URL(DOMAINE + "matriculeFree.php");
+			
+			URL url = new URL(DOMAINE + "is_free_matricule.php");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true); // Pour pouvoir envoyer des donn�es
-			connection.setRequestMethod("POST"); 
+			connection.setRequestMethod("POST");
 			writer = new OutputStreamWriter(connection.getOutputStream());
 			writer.write("matricule=" + matricule);
 			writer.flush();
 			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String ligne;
 			while ((ligne = reader.readLine()) != null) {
+				System.out.println(ligne);
 				result += ligne;
 			}
+			JSONObject obj = new JSONObject(result);
+			value = obj.getBoolean("free");
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
 			try{writer.close();}catch(Exception e){}
 			try{reader.close();}catch(Exception e){}
 		}
-		return result.equals(GOOD_RESULT);
+		return value;
 	}
 
 	@Override
