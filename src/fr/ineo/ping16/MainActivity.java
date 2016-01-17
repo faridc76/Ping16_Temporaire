@@ -6,10 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import dao.IUtilisateurDB;
-import dto.Utilisateur;
-import json.MatriculeRequete;
-import json.UtilisateurDB;
+import json.CheckLoginRequete;
 
 public class MainActivity extends Activity implements OnClickListener{
 
@@ -28,10 +25,9 @@ public class MainActivity extends Activity implements OnClickListener{
 		if(v == connexion){
 			EditText matricule = (EditText) findViewById(R.id.matricule);
 			EditText password = (EditText) findViewById(R.id.password);
-			IUtilisateurDB utilisateurDB = new UtilisateurDB();
-			Utilisateur utilisateur = null;
+			
 			// Pour tester le matricule
-			new MatriculeRequete().execute(matricule.getText().toString(), this.getApplicationContext());
+			new CheckLoginRequete().execute(matricule.getText().toString(), password.getText().toString(), this.getApplicationContext());
 			// Il faudra mettre le checkLogin à la place !
 		}
 		

@@ -8,10 +8,7 @@ import java.net.URL;
 
 import org.json.JSONObject;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.StrictMode;
-import android.widget.Toast;
 import dao.IUtilisateurDB;
 import dto.Utilisateur;
 
@@ -61,12 +58,13 @@ public class UtilisateurDB implements IUtilisateurDB {
 	@Override
 	public Utilisateur checkLogin(String matricule, String password) {
 		String result = "";
+		Utilisateur utilisateur = null;
 		OutputStreamWriter writer = null;
 		BufferedReader reader = null;
 		try {
 			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 			StrictMode.setThreadPolicy(policy); 
-			URL url = new URL(DOMAINE + "checkLogin.php");
+			URL url = new URL(DOMAINE + "recup_utilisateur.php");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true); // Pour pouvoir envoyer des donn�es
 			connection.setRequestMethod("POST"); 
@@ -79,17 +77,25 @@ public class UtilisateurDB implements IUtilisateurDB {
 				System.out.println(ligne);
 				result += ligne;
 			}
+			JSONObject obj = new JSONObject(result);
+			if(obj.getBoolean("result")) {
+				utilisateur = new Utilisateur();
+				utilisateur.setId(obj.getInt("id"));
+				utilisateur.setMatricule(obj.getString("matricule"));
+				utilisateur.setNom(obj.getString("nom"));
+				utilisateur.setPrenom(obj.getString("prenom"));
+				utilisateur.setNumero(obj.getString("numero"));
+				utilisateur.setBureau(obj.getString("bureau"));
+				utilisateur.setMail(obj.getString("mail"));
+				utilisateur.setFonction(obj.getString("fonction"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try{writer.close();}catch(Exception e){}
 			try{reader.close();}catch(Exception e){}
 		}
-		if (result.equals(GOOD_RESULT)) {
-			return getUtilisateurFromMatricule(matricule);
-		} else {
-			return null;
-		}
+		return utilisateur;
 	}
 
 	@Override
