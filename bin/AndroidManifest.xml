@@ -25,7 +25,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        
         <activity android:name=".MenuActivity" android:label="@string/app_name" />
+        <activity android:name=".DevisActivity"></activity>
+        <activity android:name=".ChoixDevisActivity"></activity>
+        
+        <activity android:name=".ClientDevisActivity" />
+        <activity android:name=".CoefDevisActivity" />
+        <activity android:name=".DetailDevisActivity" />
+        <activity android:name=".MetreDevisActivity" />
+        <activity android:name=".NomencDevisActivity" />
+        <activity android:name=".RemiseDevisActivity" />
+        <activity android:name=".TravDevisActivity" />
             
     </application>
 

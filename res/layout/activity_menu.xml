@@ -12,10 +12,64 @@
         android:id="@+id/bienvenue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="54dp"
-        android:layout_marginTop="50dp"
-        android:text="Bienvenue " />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Bienvenue" />
+
+    <Button
+        android:id="@+id/Devis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Contact"
+        android:layout_alignBottom="@+id/Contact"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="99dp"
+        android:text="Devis" />
+
+    <Button
+        android:id="@+id/Chantiers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Plan"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="112dp"
+        android:text="Chantier" />
+
+    <Button
+        android:id="@+id/Contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="128dp"
+        android:layout_toRightOf="@+id/Devis"
+        android:text="Contact" />
+
+    <Button
+        android:id="@+id/Plan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Contact"
+        android:layout_alignBottom="@+id/Contact"
+        android:layout_alignLeft="@+id/bienvenue"
+        android:text="Plan" />
+
+    <Button
+        android:id="@+id/Bdc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Chantiers"
+        android:layout_marginRight="111dp"
+        android:layout_toLeftOf="@+id/Codis"
+        android:text="B.D.C" />
+
+    <Button
+        android:id="@+id/Codis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Chantiers"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="185dp"
+        android:text="Codis" />
 
 </RelativeLayout>

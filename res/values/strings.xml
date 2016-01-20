@@ -4,5 +4,23 @@
     <string name="app_name">Ping16</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    
+   
+
+   
+    <string name="devis_prompt">Choisir un Devis</string>
+
+    <string-array name="devis_arrays">
+        <item>AC001</item>
+        <item>AC002</item>
+        <item>AC003</item>
+        <item>AC004</item>
+        <item>AC100</item>
+        <item>AC200</item>
+        <item>AC300</item>
+        <item>AC400</item>
+    </string-array>
+
+
 
 </resources>
