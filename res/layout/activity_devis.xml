@@ -10,14 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="fr.ineo.ping16.DevisActivity" >
 
-    <Spinner
-        android:id="@+id/devisspinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        android:entries="@array/devis_arrays"
-        android:prompt="@string/devis_prompt" />
-
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
@@ -25,6 +17,26 @@
         android:layout_below="@+id/devisspinner"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="127dp"
-        android:text="Submit" />
+        android:text="Choisir" />
+
+    <Spinner
+        android:id="@+id/devisspinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="218dp"
+        android:entries="@array/devis_arrays"
+        android:prompt="@string/devis_prompt" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="Choisir votre Devis"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     
    </RelativeLayout>

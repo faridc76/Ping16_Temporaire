@@ -8,7 +8,7 @@
    
 
    
-    <string name="devis_prompt">Choisir un Devis</string>
+    <string name="devis_prompt">Devis</string>
 
     <string-array name="devis_arrays">
         <item>AC001</item>
@@ -21,6 +21,15 @@
         <item>AC400</item>
     </string-array>
 
+<string name="Chantier_prompt">Chantiers</string>
 
+    <string-array name="Chantier_arrays">
+        <item>Chantier1</item>
+        <item>Chantier2</item>
+        <item>Chantier3</item>
+        <item>Chantier4</item>
+        <item>Chantier63</item>
+        <item>Chantier123</item>
+    </string-array>
 
 </resources>

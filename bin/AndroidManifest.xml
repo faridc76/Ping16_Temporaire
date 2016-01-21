@@ -38,6 +38,11 @@
         <activity android:name=".NomencDevisActivity" />
         <activity android:name=".RemiseDevisActivity" />
         <activity android:name=".TravDevisActivity" />
+        <activity android:name=".BdcActivity"></activity>
+        <activity android:name=".PlanActivity"></activity>
+        <activity android:name=".ContactActivity"></activity>
+        <activity android:name=".PointageActivity"></activity>
+        <activity android:name=".ChantierActivity"></activity>
             
     </application>
 
