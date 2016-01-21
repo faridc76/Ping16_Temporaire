@@ -47,7 +47,7 @@ public class CheckLoginRequete extends AsyncTask<Object, Void, Utilisateur> {
 				//Intent...
 			}
 			else {
-				new MatriculeRequete().execute(matricule, context);
+				Toast.makeText(context, String.valueOf("Identifiants incorrects"), Toast.LENGTH_SHORT).show();
 			}
 		}
 		

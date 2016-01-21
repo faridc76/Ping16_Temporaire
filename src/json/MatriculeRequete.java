@@ -23,10 +23,10 @@ public class MatriculeRequete extends AsyncTask<Object, Void, Boolean> {
 	protected void onPostExecute(Boolean result) {
 		if(context != null && matricule != null) {
 			if(!result) {
-				Toast.makeText(context, String.valueOf("Mot de passe incorrect"), Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, String.valueOf("Not available"), Toast.LENGTH_SHORT).show();
 			}
 			else {
-				Toast.makeText(context, String.valueOf("Utilisateur inconnu"), Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, String.valueOf("Available"), Toast.LENGTH_SHORT).show();
 			}
 		}
 		
