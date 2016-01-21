@@ -2,20 +2,14 @@ package json;
 
 import java.util.List;
 
-import com.google.gson.Gson;
-
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 import dao.IAffaireDB;
-import dao.IUtilisateurDB;
-import dto.Utilisateur;
-import fr.ineo.ping16.MenuActivity;
 
 public class ListeAffaireRequete extends AsyncTask<Object, Void, List<String>> {
 	
@@ -34,12 +28,27 @@ public class ListeAffaireRequete extends AsyncTask<Object, Void, List<String>> {
 	}
 
 	@Override
-	protected void onPostExecute(List<String> result) {
+	protected void onPostExecute(final List<String> result) {
 		if(context != null && spinner != null) {
 			if(result != null) {
+				System.out.println(result);
 				ArrayAdapter<String> adp1 = new ArrayAdapter<String>(context.getApplicationContext(), android.R.layout.simple_spinner_item, result);
 				adp1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 				spinner.setAdapter(adp1);
+				spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+					@Override
+					public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+						new InfoAffaireRequete().execute(result.get(position), context);
+					}
+
+					@Override
+					public void onNothingSelected(AdapterView<?> parent) {
+						// TODO Auto-generated method stub
+						
+					}
+                    
+                });
 			}
 			else {
 				Toast.makeText(context, String.valueOf("Impossible de récupérer la liste des affaires"), Toast.LENGTH_SHORT).show();

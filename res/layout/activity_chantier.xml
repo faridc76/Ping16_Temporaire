@@ -17,7 +17,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="241dp"
-        android:entries="@array/Chantier_arrays"
         android:prompt="@string/Chantier_prompt" />
 
     <TextView
