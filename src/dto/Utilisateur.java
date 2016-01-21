@@ -9,7 +9,7 @@ public class Utilisateur {
 	private String numero;
 	private String bureau;
 	private String mail;
-	private String fonction;
+	private int fonction;
 	private String password;
 	
 	public Utilisateur () {};
@@ -70,11 +70,11 @@ public class Utilisateur {
 		this.mail = mail;
 	}
 
-	public String getFonction() {
+	public int getFonction() {
 		return fonction;
 	}
 
-	public void setFonction(String fonction) {
+	public void setFonction(int fonction) {
 		this.fonction = fonction;
 	}
 

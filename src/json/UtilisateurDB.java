@@ -87,7 +87,7 @@ public class UtilisateurDB implements IUtilisateurDB {
 				utilisateur.setNumero(obj.getString("numero"));
 				utilisateur.setBureau(obj.getString("bureau"));
 				utilisateur.setMail(obj.getString("mail"));
-				utilisateur.setFonction(obj.getString("fonction"));
+				utilisateur.setFonction(obj.getInt("fonction"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
