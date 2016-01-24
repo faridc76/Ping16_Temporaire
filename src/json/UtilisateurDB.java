@@ -15,7 +15,7 @@ import dto.Utilisateur;
 public class UtilisateurDB implements IUtilisateurDB {
 
 	
-	public static String MY_PREFS_NAME = "Pref_pour_apli_mohamed";
+	public static String MY_PREFS_NAME = "Pref_pour_gestineo";
 	public final static String CHEF_DE_CHANTIER = "Chef de chantier";
 	public final static String CONDUCTEUR_DE_TRAVAUX = "Conducteur de travaux";
 	public final static String RESPONSABLE_DAFFAIRES = "Responsable d'affaires";
@@ -23,8 +23,7 @@ public class UtilisateurDB implements IUtilisateurDB {
 	
 	public final static String DOMAINE = "http://faridchouakria.free.fr/webservices/";
 	
-	@Override
-	public boolean AjoutPersonne(Utilisateur u) {
+	public boolean AjoutPersonne(Utilisateur u, String password) {
 		String result = "";
 		int id = 0;
 		OutputStreamWriter writer = null;
@@ -37,7 +36,7 @@ public class UtilisateurDB implements IUtilisateurDB {
 			connection.setDoOutput(true); // Pour pouvoir envoyer des donn�es
 			connection.setRequestMethod("POST"); 
 			writer = new OutputStreamWriter(connection.getOutputStream());
-			writer.write("matricule=" + u.getMatricule() + "&nom=" + u.getNom() + "&prenom=" + u.getPrenom() + "&numero=" + u.getNumero() + "&bureau=" + u.getBureau() + "&mail=" + u.getMail() + "&password=" + u.getPassword());
+			writer.write("matricule=" + u.getMatricule() + "&nom=" + u.getNom() + "&prenom=" + u.getPrenom() + "&numero=" + u.getNumero() + "&bureau=" + u.getBureau() + "&mail=" + u.getMail() + "&password=" + password);
 			writer.flush();
 			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String ligne;

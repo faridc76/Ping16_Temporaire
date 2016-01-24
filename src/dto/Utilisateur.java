@@ -10,9 +10,10 @@ public class Utilisateur {
 	private String bureau;
 	private String mail;
 	private int fonction;
-	private String password;
 	
-	public Utilisateur () {};
+	public Utilisateur () {
+		id = 0;
+	};
 	
 	public int getId() {
 		return id;
@@ -78,12 +79,4 @@ public class Utilisateur {
 		this.fonction = fonction;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
 }

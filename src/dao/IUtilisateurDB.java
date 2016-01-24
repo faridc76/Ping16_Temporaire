@@ -4,7 +4,7 @@ import dto.Utilisateur;
 
 public interface IUtilisateurDB {
 	
-	public boolean AjoutPersonne(Utilisateur u);
+	boolean AjoutPersonne(Utilisateur u, String password);
 	
 	public Utilisateur checkLogin(String matricule, String password);
 	

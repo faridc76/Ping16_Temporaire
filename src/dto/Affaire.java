@@ -1,5 +1,8 @@
 package dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Affaire {
 	
 	private int id;
@@ -14,26 +17,28 @@ public class Affaire {
 	
 	private int statut;
 	
-	private int id_responsable;
+	private Utilisateur responsable;
 	
-	private int id_conducteur;
+	private Utilisateur conducteur;
 	
-	private int id_chef;
+	private Utilisateur chef;
+	
+	private List<String> documents = new ArrayList<String>();
 	
 	public Affaire(){
-		
+		id = 0;
 	}
 	
-	public Affaire(int id, String nom, String lieu, String budget, String commenditaire, int statut, int id_responsable, int id_conducteur, int id_chef) {
+	public Affaire(int id, String nom, String lieu, String budget, String commenditaire, int statut, Utilisateur responsable, Utilisateur conducteur, Utilisateur chef) {
 		this.id = id;
 		this.nom = nom;
 		this.lieu = lieu;
 		this.budget = budget;
 		this.commenditaire = commenditaire;
 		this.statut = statut;
-		this.id_responsable = id_responsable;
-		this.id_conducteur = id_conducteur;
-		this.id_chef = id_chef;
+		this.responsable = responsable;
+		this.conducteur = conducteur;
+		this.chef = chef;
 	}
 
 	public int getId() {
@@ -84,33 +89,44 @@ public class Affaire {
 		this.statut = statut;
 	}
 
-	public int getId_responsable() {
-		return id_responsable;
+	public Utilisateur getResponsable() {
+		return responsable;
 	}
 
-	public void setId_responsable(int id_responsable) {
-		this.id_responsable = id_responsable;
+	public void setResponsable(Utilisateur responsable) {
+		this.responsable = responsable;
 	}
 
-	public int getId_conducteur() {
-		return id_conducteur;
+	public Utilisateur getConducteur() {
+		return conducteur;
 	}
 
-	public void setId_conducteur(int id_conducteur) {
-		this.id_conducteur = id_conducteur;
+	public void setConducteur(Utilisateur conducteur) {
+		this.conducteur = conducteur;
 	}
 
-	public int getId_chef() {
-		return id_chef;
+	public Utilisateur getChef() {
+		return chef;
 	}
 
-	public void setId_chef(int id_chef) {
-		this.id_chef = id_chef;
+	public void setChef(Utilisateur chef) {
+		this.chef = chef;
 	}
-	
+
+	public List<String> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(List<String> documents) {
+		this.documents = documents;
+	}
+
 	@Override
 	public String toString() {
-		return "Affaire [id=" + id + ", nom=" + nom + ", lieu=" + lieu + ", budget=" + budget + ", commenditaire=" + commenditaire
-				+ ", statut=" + statut + ", id_responsable=" + id_responsable + ", id_conducteur=" + id_conducteur + ", id_chef=" + id_chef + "]";
+		return "Affaire [id=" + id + ", nom=" + nom + ", lieu=" + lieu + ", budget=" + budget + ", commenditaire="
+				+ commenditaire + ", statut=" + statut + ", responsable=" + responsable + ", conducteur=" + conducteur
+				+ ", chef=" + chef + ", documents=" + documents + "]";
 	}
+
+	
 }
