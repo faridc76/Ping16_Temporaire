@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 import dao.IAffaireDB;
+import json.db.AffaireDB;
 
 public class ListeAffaireRequete extends AsyncTask<Object, Void, List<String>> {
 	

@@ -1,4 +1,4 @@
-package json;
+package json.db;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import android.os.StrictMode;
 import dao.IAffaireDB;
+import dao.IUtilisateurDB;
 import dto.Affaire;
 
 public class AffaireDB implements IAffaireDB {
@@ -82,7 +83,8 @@ public class AffaireDB implements IAffaireDB {
 			while ((ligne = reader.readLine()) != null) {
 				result += ligne;
 			}
-
+			
+			IUtilisateurDB utilisateurDB = new UtilisateurDB();
 			JSONObject obj = new JSONObject(result);
 			affaire = new Affaire();
 			affaire.setId(obj.getInt("id"));
@@ -91,9 +93,9 @@ public class AffaireDB implements IAffaireDB {
 			affaire.setBudget(obj.getString("budget"));
 			affaire.setCommenditaire(obj.getString("commenditaire"));
 			affaire.setStatut(obj.getInt("statut"));
-			affaire.setId_responsable(obj.getInt("responsable"));
-			affaire.setId_conducteur(obj.getInt("conducteur"));
-			affaire.setId_chef(obj.getInt("chef"));
+			affaire.setResponsable(utilisateurDB.getUtilisateurFromId(obj.getInt("responsable")));
+			affaire.setConducteur(utilisateurDB.getUtilisateurFromId(obj.getInt("conducteur")));
+			affaire.setChef(utilisateurDB.getUtilisateurFromId(obj.getInt("chef")));
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {

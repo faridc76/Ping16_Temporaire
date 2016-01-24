@@ -11,6 +11,7 @@ import android.widget.Toast;
 import dao.IUtilisateurDB;
 import dto.Utilisateur;
 import fr.ineo.ping16.MenuActivity;
+import json.db.UtilisateurDB;
 
 public class CheckLoginRequete extends AsyncTask<Object, Void, Utilisateur> {
 	

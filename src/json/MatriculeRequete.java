@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import dao.IUtilisateurDB;
+import json.db.UtilisateurDB;
 
 public class MatriculeRequete extends AsyncTask<Object, Void, Boolean> {
 	

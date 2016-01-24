@@ -1,4 +1,4 @@
-package json;
+package json.db;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -73,7 +73,6 @@ public class UtilisateurDB implements IUtilisateurDB {
 			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String ligne;
 			while ((ligne = reader.readLine()) != null) {
-				System.out.println(ligne);
 				result += ligne;
 			}
 			JSONObject obj = new JSONObject(result);
@@ -117,7 +116,6 @@ public class UtilisateurDB implements IUtilisateurDB {
 			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String ligne;
 			while ((ligne = reader.readLine()) != null) {
-				System.out.println(ligne);
 				result += ligne;
 			}
 			JSONObject obj = new JSONObject(result);
@@ -139,8 +137,44 @@ public class UtilisateurDB implements IUtilisateurDB {
 
 	@Override
 	public Utilisateur getUtilisateurFromId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String result = "";
+		Utilisateur utilisateur = null;
+		OutputStreamWriter writer = null;
+		BufferedReader reader = null;
+		try {
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+			StrictMode.setThreadPolicy(policy); 
+			URL url = new URL(DOMAINE + "recup_utilisateur_id.php");
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true); // Pour pouvoir envoyer des donn�es
+			connection.setRequestMethod("POST"); 
+			writer = new OutputStreamWriter(connection.getOutputStream());
+			writer.write("id=" + id);
+			writer.flush();
+			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			String ligne;
+			while ((ligne = reader.readLine()) != null) {
+				result += ligne;
+			}
+			JSONObject obj = new JSONObject(result);
+			if(obj.getBoolean("result")) {
+				utilisateur = new Utilisateur();
+				utilisateur.setId(obj.getInt("id"));
+				utilisateur.setMatricule(obj.getString("matricule"));
+				utilisateur.setNom(obj.getString("nom"));
+				utilisateur.setPrenom(obj.getString("prenom"));
+				utilisateur.setNumero(obj.getString("numero"));
+				utilisateur.setBureau(obj.getString("bureau"));
+				utilisateur.setMail(obj.getString("mail"));
+				utilisateur.setFonction(obj.getInt("fonction"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try{writer.close();}catch(Exception e){}
+			try{reader.close();}catch(Exception e){}
+		}
+		return utilisateur;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 import dao.IAffaireDB;
 import dto.Affaire;
+import json.db.AffaireDB;
 
 public class InfoAffaireRequete extends AsyncTask<Object, Void, Affaire> {
 	
