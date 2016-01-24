@@ -1,6 +1,10 @@
 package json;
 
+import com.google.gson.Gson;
+
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import dao.IAffaireDB;
@@ -26,6 +30,11 @@ public class InfoAffaireRequete extends AsyncTask<Object, Void, Affaire> {
 		if(context != null && nomAffaire != null) {
 			if(result != null) {
 				Toast.makeText(context, String.valueOf(result), Toast.LENGTH_SHORT).show();
+				SharedPreferences sharedPreferences = context.getSharedPreferences("mesPrefs", context.MODE_PRIVATE);
+				Editor editor = sharedPreferences.edit();
+				Gson gson = new Gson();
+				editor.putString("affaire", gson.toJson(result));
+				editor.commit();
 			}
 			else {
 				Toast.makeText(context, String.valueOf("nomAffaire ne doit pas être null"), Toast.LENGTH_SHORT).show();

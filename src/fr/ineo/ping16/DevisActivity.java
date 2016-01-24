@@ -4,17 +4,20 @@ package fr.ineo.ping16;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
+import dto.Affaire;
+import json.ListeDocumentRequete;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class DevisActivity extends Activity {
 	
@@ -26,11 +29,18 @@ public class DevisActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_devis);
 		
-	
+		
 		
 		addListenerOnButton();
 		addListenerOnSpinnerItemSelection();
+		
+		
+		SharedPreferences sharedPreferences = getSharedPreferences("mesPrefs", MODE_PRIVATE);
+		Gson gson = new Gson();
+		String jsonAffaire = sharedPreferences.getString("affaire", "");
+		Affaire affaire = gson.fromJson(jsonAffaire, Affaire.class);
        
+		new ListeDocumentRequete().execute(affaire, devisspinner, this.getApplicationContext());
 	}
 	// add items into spinner dynamically
 	 

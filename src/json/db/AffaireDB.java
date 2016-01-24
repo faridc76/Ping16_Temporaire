@@ -19,6 +19,7 @@ import dto.Affaire;
 public class AffaireDB implements IAffaireDB {
 	
 	public final static String DOMAINE = "http://faridchouakria.free.fr/webservices/";
+	public final static String DOCUMENT = "http://faridchouakria.free.fr/documents/";
 	
 	@Override
 	public List<String> listeAffaire(int id_utilisateur) {
@@ -103,6 +104,47 @@ public class AffaireDB implements IAffaireDB {
 			try{reader.close();}catch(Exception e){}
 		}
 		return affaire;
+	}
+
+	@Override
+	public List<String> listeDocument(String nom_affaire) {
+		String result = "";
+		OutputStreamWriter writer = null;
+		BufferedReader reader = null;
+		ArrayList<String> list = null;
+		try {
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+			StrictMode.setThreadPolicy(policy); 
+			
+			URL url = new URL(DOMAINE + "liste_documents_affaire.php");
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true); // Pour pouvoir envoyer des donn�es
+			connection.setRequestMethod("POST");
+			writer = new OutputStreamWriter(connection.getOutputStream());
+			writer.write("affaire=" + String.valueOf(nom_affaire));
+			writer.flush();
+			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			String ligne;
+			while ((ligne = reader.readLine()) != null) {
+				result += ligne;
+			}
+			System.out.println(result);
+			list = new ArrayList<String>();
+			JSONObject obj = new JSONObject(result);
+			JSONArray jsonArray = obj.getJSONArray("documents");
+			if (jsonArray != null) { 
+					int len = jsonArray.length();
+					for (int i=0;i<len;i++) { 
+						list.add(jsonArray.get(i).toString());
+				   } 
+			} 
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try{writer.close();}catch(Exception e){}
+			try{reader.close();}catch(Exception e){}
+		}
+		return list;
 	}
 
 }
