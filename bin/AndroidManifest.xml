@@ -6,6 +6,8 @@
 	
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     
     <uses-sdk
         android:minSdkVersion="23"
@@ -15,7 +17,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme" android:persistent="false">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -25,25 +27,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        
         <activity android:name=".MenuActivity" android:label="@string/app_name" />
-        <activity android:name=".DevisActivity"></activity>
-        <activity android:name=".ChoixDevisActivity"></activity>
-        
-        <activity android:name=".ClientDevisActivity" />
-        <activity android:name=".CoefDevisActivity" />
-        <activity android:name=".DetailDevisActivity" />
-        <activity android:name=".MetreDevisActivity" />
-        <activity android:name=".NomencDevisActivity" />
-        <activity android:name=".RemiseDevisActivity" />
-        <activity android:name=".TravDevisActivity" />
-        <activity android:name=".BdcActivity"></activity>
-        <activity android:name=".PlanActivity"></activity>
-        <activity android:name=".ContactActivity"></activity>
-        <activity android:name=".PointageActivity"></activity>
-        <activity android:name=".ChantierActivity"></activity>
-            
+        <activity android:name=".ChantierActivity" android:label="@string/app_name" />
+        <activity android:name=".BDCActivity" android:label="@string/app_name" />
+        <activity android:name=".ChoixDevisActivity" android:label="@string/app_name" />
+        <activity android:name=".ContactActivity" android:label="@string/app_name" />
+        <activity android:name=".DevisActivity" android:label="@string/app_name" />
+        <activity android:name=".PlanActivity" android:label="@string/app_name" />
+        <activity android:name=".PointageActivity" android:label="@string/app_name" />
     </application>
 
 </manifest>

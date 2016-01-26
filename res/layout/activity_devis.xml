@@ -38,5 +38,13 @@
         android:layout_marginTop="70dp"
         android:text="Choisir votre Devis"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/downloadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnSubmit"
+        android:layout_alignBottom="@+id/btnSubmit"
+        android:text="Download" />
     
    </RelativeLayout>

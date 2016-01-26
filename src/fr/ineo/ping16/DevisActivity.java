@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import dto.Affaire;
+import json.DownloadAction;
 import json.ListeDocumentRequete;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -41,6 +42,16 @@ public class DevisActivity extends Activity {
 		Affaire affaire = gson.fromJson(jsonAffaire, Affaire.class);
        
 		new ListeDocumentRequete().execute(affaire, devisspinner, this.getApplicationContext());
+		Button downloadButton = (Button) findViewById(R.id.downloadButton);
+		downloadButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+
+				new DownloadAction().execute(devisspinner.getSelectedItem().toString(), getApplicationContext());
+			}
+		});
 	}
 	// add items into spinner dynamically
 	 
