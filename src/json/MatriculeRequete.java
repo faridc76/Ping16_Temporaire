@@ -6,6 +6,12 @@ import android.widget.Toast;
 import dao.IUtilisateurDB;
 import json.db.UtilisateurDB;
 
+/**
+ * Classe permettant de savoir si un matricule est libre
+ * @author Ping16
+ *
+ */
+
 public class MatriculeRequete extends AsyncTask<Object, Void, Boolean> {
 	
 	private Context context = null;

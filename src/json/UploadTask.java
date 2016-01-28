@@ -22,6 +22,15 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Classe permettant d'upload un fichier dans une affaire grâce 
+ * à upload_fichier.php. Il faut fournir en paramètre le contexte
+ * et le ProgressDialog qui permettra de montrer l'avancement de 
+ * l'upload.
+ * 
+ * @author Ping16
+ *
+ */
 public class UploadTask extends AsyncTask<String, Integer, String> {
 
     private Context context;
@@ -36,6 +45,7 @@ public class UploadTask extends AsyncTask<String, Integer, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        // On lock l'application pendant l'upload
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
         mWakeLock.acquire();
@@ -45,6 +55,7 @@ public class UploadTask extends AsyncTask<String, Integer, String> {
     @Override
     protected void onProgressUpdate(Integer... progress) {
         super.onProgressUpdate(progress);
+        // Au cours de l'upload, on modifie l'état de la barre d'avancement
         progressDialog.setIndeterminate(false);
         progressDialog.setMax(100);
         progressDialog.setProgress(progress[0]);
@@ -52,6 +63,7 @@ public class UploadTask extends AsyncTask<String, Integer, String> {
 
     @Override
     protected void onPostExecute(String result) {
+    	// On délock l'application
         mWakeLock.release();
         progressDialog.dismiss();
         if(result.equals("true"))
@@ -62,6 +74,7 @@ public class UploadTask extends AsyncTask<String, Integer, String> {
 
     @Override
     protected String doInBackground(String... sUrl) {
+    	// Récupération des paramètres
         String affaireName = sUrl[0];
         String fileName = sUrl[1];
 
@@ -70,6 +83,7 @@ public class UploadTask extends AsyncTask<String, Integer, String> {
         String twoHyphens = "--";
 
         String result = "";
+        // On va choisir le fichier dont le path correspond à celui de l'affaire et du fichier choisi
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/GestIneo/" + affaireName, fileName);
 
         try {
@@ -79,6 +93,8 @@ public class UploadTask extends AsyncTask<String, Integer, String> {
             fileInputStream.close();
 
             URL url = new URL("http://faridchouakria.free.fr/webservices/upload_fichier.php");
+            
+            // Début du post
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setUseCaches(false);
@@ -116,7 +132,11 @@ public class UploadTask extends AsyncTask<String, Integer, String> {
 
             dos.flush();
             dos.close();
-
+            
+            // Fin du post
+            
+            // On lit la réponse
+            
             InputStream inputStream = connection.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             String ligne;

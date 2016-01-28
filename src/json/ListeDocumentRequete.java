@@ -13,6 +13,12 @@ import dao.IAffaireDB;
 import dto.Affaire;
 import json.db.AffaireDB;
 
+/**
+ * Classe permettant de récupérer la liste des noms des documents d'une affaire
+ * @author Ping16
+ *
+ */
+
 public class ListeDocumentRequete extends AsyncTask<Object, Void, List<String>> {
 	
 	private Context context = null;

@@ -12,6 +12,12 @@ import android.widget.Toast;
 import dao.IAffaireDB;
 import json.db.AffaireDB;
 
+/**
+ * Classe permettant de récupérer la liste des noms des affaires
+ * @author Ping16
+ *
+ */
+
 public class ListeAffaireRequete extends AsyncTask<Object, Void, List<String>> {
 	
 	private Context context = null;

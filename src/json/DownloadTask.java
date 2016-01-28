@@ -15,6 +15,15 @@ import android.os.Environment;
 import android.os.PowerManager;
 import android.widget.Toast;
 
+/**
+ * Classe permettant de télécharger un fichier d'une affaire.
+ * Il faut fournir en paramètre le contexte et le ProgressDialog
+ * qui permettra de montrer l'avancement du téléchargement.
+ * 
+ * @author Ping16
+ *
+ */
+
 public class DownloadTask extends AsyncTask<String, Integer, String> {
 
     private Context context;

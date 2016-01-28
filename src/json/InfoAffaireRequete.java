@@ -11,6 +11,12 @@ import dao.IAffaireDB;
 import dto.Affaire;
 import json.db.AffaireDB;
 
+/**
+ * Classe permettant de récupérer toutes les infos sur une affaire à partir de son nom fournit en paramètre
+ * @author Ping16
+ *
+ */
+
 public class InfoAffaireRequete extends AsyncTask<Object, Void, Affaire> {
 	
 	private Context context = null;

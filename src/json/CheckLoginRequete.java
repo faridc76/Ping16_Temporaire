@@ -13,6 +13,12 @@ import dto.Utilisateur;
 import fr.ineo.ping16.MenuActivity;
 import json.db.UtilisateurDB;
 
+/**
+ * Classe permettant de check les identifiants
+ * On stock ensuite l'utilisateur connecté dans SharedPreferences
+ * @author Ping16
+ *
+ */
 public class CheckLoginRequete extends AsyncTask<Object, Void, Utilisateur> {
 	
 	private Context context = null;

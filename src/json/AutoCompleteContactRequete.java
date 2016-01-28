@@ -26,6 +26,11 @@ import dao.IUtilisateurDB;
 import dto.Utilisateur;
 import fr.ineo.ping16.MenuActivity;
 
+/**
+ * Ne marche pas encore
+ * @author Damien Bellenger
+ *
+ */
 public class AutoCompleteContactRequete extends AsyncTask<Object, Void, List<String>> {
 
 	private Context context = null;
