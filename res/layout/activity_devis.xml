@@ -46,5 +46,14 @@
         android:layout_alignBaseline="@+id/btnSubmit"
         android:layout_alignBottom="@+id/btnSubmit"
         android:text="Download" />
+
+    <Button
+        android:id="@+id/uploadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnSubmit"
+        android:layout_alignBottom="@+id/btnSubmit"
+        android:layout_alignRight="@+id/devisspinner"
+        android:text="Upload" />
     
    </RelativeLayout>
